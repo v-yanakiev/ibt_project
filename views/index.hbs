@@ -1,2 +1,13 @@
 <h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div id="container">
+    {{#each phones}}
+        <div class="phoneBox">
+            <div><a href="product/{{this.id}}">{{this.name}}</a></div>
+            <div>{{this.short_description}}</div>
+            <div>{{this.price}}лв.</div>
+            <div>
+                <img src="images/{{this.image_url}}" alt="Phone Image">
+            </div>
+        </div>
+    {{/each}}
+</div>
