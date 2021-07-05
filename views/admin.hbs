@@ -20,11 +20,9 @@
                 {{/each}}
             </div>
 
-            <div>
-                <form method="POST" action="delete/{{this.id}}">
-                    <input type="submit" value="Изтрий продукта">
-                </form>
-            </div>
+            <form action="admin/delete/{{this.id}}" method="POST">
+                <input type="submit" value="Изтрий продукта">
+            </form>
         </div>
     {{/each}}
 

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 let getProductsFromDatabase=require('../dbModules/getProductsFromDatabase');
 let getOrdersForProduct=require('../dbModules/getOrdersForProduct');
+let deleteProduct=require('../dbModules/deleteProduct');
 /* GET home page. */
 router.get('/', function(req, res, next) {
     let phones={};
@@ -16,5 +17,9 @@ router.get('/', function(req, res, next) {
     });
 
 });
-
+router.post('/delete/:id',function(req,res,next){
+    deleteProduct(req.params.id).then(()=>{
+        res.redirect('/admin');
+    });
+});
 module.exports = router;
