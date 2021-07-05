@@ -23,8 +23,22 @@ router.post('/newReview/:id', function(req, res, next) {
     );
 });
 router.post('/newOrder/:id', function(req, res, next) {
+    let responseObject={successMessage:`${req.body.name}, благодарим ви за поръчката!`};
+
     newOrder(req.body.name,req.body.address,req.params.id).then(
-        (sqlRes,err)=>res.redirect('/product/'+req.params.id)
+        (sqlRes,err)=>
+        {
+            getProduct(req.params.id).then(handleProduct).
+                then(()=>getReviewsForProduct(req.params.id)).then(handleReviews).
+                then(()=>res.render("product",responseObject));
+        }    
     );
+    function handleProduct(req,res){
+        responseObject.product=req.rows[0];
+    }
+    function handleReviews(req,res){
+        responseObject.reviews=req.rows;
+    }
 });
+
 module.exports = router;

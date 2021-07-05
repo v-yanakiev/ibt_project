@@ -15,6 +15,9 @@
         <input type="text" name="address">
         <input type="submit" value="Купи">
     </form>
+    {{#if successMessage}}
+    <h3>{{successMessage}}</h3>
+    {{/if}}
 </div>
 
 <div>
