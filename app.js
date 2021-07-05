@@ -7,6 +7,7 @@ var ensureCreated=require('./dbModules/ensureCreated');
 const db=require('./dbModules/db');
 var indexRouter = require('./routes/index');
 var productRouter = require('./routes/product');
+var adminRouter = require('./routes/admin');
 
 var app = express();
 ensureCreated().then(()=>{
@@ -21,6 +22,7 @@ ensureCreated().then(()=>{
     app.use(express.json());
     app.use('/', indexRouter);
     app.use('/product', productRouter);
+    app.use('/admin', adminRouter);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

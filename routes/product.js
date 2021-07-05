@@ -5,7 +5,6 @@ var newOrder=require('../dbModules/newOrder');
 var newReview=require('../dbModules/newReview');
 var getReviewsForProduct=require('../dbModules/getReviewsForProduct');
 
-/* GET users listing. */
 router.get('/:id', function(req, res, next) {
     let responseObject={};
     getProduct(req.params.id).then(handleProduct).

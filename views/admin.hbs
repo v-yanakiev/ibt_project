@@ -1,0 +1,31 @@
+<h1>{{title}}</h1>
+<div >
+    {{#each phones}}
+        <div class="phoneBox">
+            <div><a href="product/{{this.id}}">{{this.name}}</a></div>
+            <div>{{this.short_description}}</div>
+            <div>{{this.price}}лв.</div>
+            <div>
+                <img src="images/{{this.image_url}}" alt="Phone Image">
+            </div>
+            <div>
+                <h3>Поръчан {{this.orders.length}} пъти.</h3>
+            </div>
+            <div>
+                {{#each orders}}
+                <ul>
+                    <li>Име на купувач: {{this.buyer_name}}</li>
+                    <li>Адрес на купувач: {{this.buyer_address}}</li>
+                </ul>
+                {{/each}}
+            </div>
+
+            <div>
+                <form method="POST" action="delete/{{this.id}}">
+                    <input type="submit" value="Изтрий продукта">
+                </form>
+            </div>
+        </div>
+    {{/each}}
+
+</div>
