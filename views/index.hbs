@@ -1,12 +1,12 @@
 <h1>{{title}}</h1>
-<div id="container">
+<div>
     {{#each phones}}
-        <div class="phoneBox">
+        <div class="phoneBox center">
             <div><a href="product/{{this.id}}">{{this.name}}</a></div>
             <div>{{this.short_description}}</div>
             <div>{{this.price}}лв.</div>
             <div>
-                <img src="images/{{this.image_url}}" alt="Phone Image">
+                <img src="{{this.image_url}}" alt="Phone Image">
             </div>
         </div>
     {{/each}}

@@ -1,0 +1,59 @@
+<h1>{{title}}</h1>
+<div >
+    {{#each phones}}
+        <div class="phoneBox center">
+            <div><a href="product/{{this.id}}">{{this.name}}</a></div>
+            <div>{{this.short_description}}</div>
+            <div>{{this.price}}лв.</div>
+            <div>
+                <img src="{{this.image_url}}" alt="Phone Image">
+            </div>
+            <div>
+                <h3>Поръчан {{this.orders.length}} пъти.</h3>
+            </div>
+            <div>
+                {{#each orders}}
+                <ul>
+                    <li>Име на купувач: {{this.buyer_name}}</li>
+                    <li>Адрес на купувач: {{this.buyer_address}}</li>
+                </ul>
+                {{/each}}
+            </div>
+
+            <form id="deleteButton" action="admin/delete/{{this.id}}" method="GET">
+                <input type="submit" value="Изтрий продукта">
+            </form>
+            <button>
+                <a href="admin/edit/{{this.id}}">Редактирай информацията за продукта</a>
+            </button>
+        </div>
+    {{/each}}
+</div>
+<div class="infoBox">
+    <h2>Създай нов продукт:</h2>
+    <form action="/admin/create/" method="POST">
+        <label >Име:</label>
+        <br />
+        <input type="text" name="productName">
+        <br />
+        <label >Кратко описание:</label>
+        <br />
+        <textarea type="textarea" name="productShortDesc">
+        </textarea> 
+        <br />
+        <label >Пълно описание:</label>
+        <br />
+        <textarea type="textarea" name="productLongDesc">
+        </textarea>
+        <br />
+        <label >Линк към снимка:</label>
+        <br />
+        <input type="text" name="productImageUrl">
+        <br />
+        <label >Цена:</label>
+        <br />
+        <input type="number" name="productPrice">
+        <br />
+        <input type="submit" value="Създай продукт">
+    </form>
+</div>

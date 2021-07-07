@@ -1,4 +1,4 @@
-<div class="mainInformation">
+<div class="infoBox center">
     <div>{{product.name}}</div>
     <div>{{product.short_description}}</div>
     <br/>
@@ -6,8 +6,9 @@
     <br/>
     <div>{{product.price}}лв.</div>
     <br/>
-    <img src="/images/{{product.image_url}}" alt="Phone Image">
+    <img src="{{product.image_url}}" alt="Phone Image">
     <br/>
+    <h3>Поръчай:</h3>
     <form id="purchasingForm" action="newOrder/{{product.id}}"method="POST">
         <label>Име:</label>
         <input type="text" name="name">

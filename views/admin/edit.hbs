@@ -1,0 +1,30 @@
+<div class="infoBox">
+  <h2>Редактирай продукт:</h2>
+  <form action="/admin/edit/{{this.id}}" method="POST">
+    <label>Име:</label>
+    <br />
+    <input type="text" value="{{this.name}}" name="productName">
+    <br />
+    <label>Кратко описание:</label>
+    <br />
+    <textarea type="textarea" name="productShortDesc">
+      {{this.short_description}}
+    </textarea>
+    <br />
+    <label>Пълно описание:</label>
+    <br />
+    <textarea type="textarea" name="productLongDesc">
+      {{this.long_description}}
+    </textarea>
+    <br />
+    <label>Линк към снимка:</label>
+    <br />
+    <input type="text" value="{{this.image_url}}" name="productImageUrl">
+    <br />
+    <label>Цена:</label>
+    <br />
+    <input type="number" value={{this.price}} name="productPrice">
+    <br />
+    <input type="submit" value="Редактирай продукт">
+  </form>
+</div>
