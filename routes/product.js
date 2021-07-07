@@ -1,14 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var getProduct=require('../dbModules/getProduct');
-var newOrder=require('../dbModules/newOrder');
-var newReview=require('../dbModules/newReview');
-var getReviewsForProduct=require('../dbModules/getReviewsForProduct');
+let ordersFunctionality=require('../dbModules/ordersFunctionality');
+let productsFunctionality=require('../dbModules/productsFunctionality');
+let reviewsFunctionality=require('../dbModules/reviewsFunctionality');
 
 router.get('/:id', function(req, res, next) {
     let responseObject={};
-    getProduct(req.params.id).then(handleProduct).
-        then(()=>getReviewsForProduct(req.params.id)).then(handleReviews).
+    productsFunctionality.getProduct(req.params.id).then(handleProduct).
+        then(()=>reviewsFunctionality.getReviews(req.params.id)).then(handleReviews).
         then(()=>res.render("product",responseObject));
     function handleProduct(req,res){
         responseObject.product=req.rows[0];
@@ -18,18 +17,18 @@ router.get('/:id', function(req, res, next) {
     }
 });
 router.post('/newReview/:id', function(req, res, next) {
-    newReview(req.body.review,req.params.id).then(
+    reviewsFunctionality.newReview(req.body.review,req.params.id).then(
         (sqlRes,err)=>res.redirect('/product/'+req.params.id)
     );
 });
 router.post('/newOrder/:id', function(req, res, next) {
     let responseObject={successMessage:`${req.body.name}, благодарим ви за поръчката!`};
 
-    newOrder(req.body.name,req.body.address,req.params.id).then(
+    ordersFunctionality.newOrder(req.body.name,req.body.address,req.params.id).then(
         (sqlRes,err)=>
         {
-            getProduct(req.params.id).then(handleProduct).
-                then(()=>getReviewsForProduct(req.params.id)).then(handleReviews).
+            productsFunctionality.getProduct(req.params.id).then(handleProduct).
+                then(()=>reviewsFunctionality.getReviews(req.params.id)).then(handleReviews).
                 then(()=>res.render("product",responseObject));
         }    
     );

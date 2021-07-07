@@ -1,10 +1,10 @@
 var express = require('express');
 var router = express.Router();
-let getProductsFromDatabase=require('../dbModules/getProductsFromDatabase');
+let productsFunctionality=require('../dbModules/productsFunctionality');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    getProductsFromDatabase().then(function(sqlRes,err){
+    productsFunctionality.getProductsFromDatabase().then(function(sqlRes,err){
         res.render('index', { phones:sqlRes.rows });
     });
 });
